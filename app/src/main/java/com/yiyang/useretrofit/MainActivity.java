@@ -1,7 +1,7 @@
 package com.yiyang.useretrofit;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.util.List;
@@ -22,24 +22,57 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+//
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl("https://api.github.com/")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//
+//        GitHubService service = retrofit.create(GitHubService.class);
+//
+//        Call<List<Repo>> repos = service.listRepos("octocat");
+////        Call<List<Repo>> repos = service.listRepos("chiangyiyang");
+//
+//        //非同步呼叫
+//        repos.enqueue(new Callback<List<Repo>>() {
+//            @Override
+//            public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
+//                List<Repo> result = response.body();
+//                for (Repo item:
+//                     result) {
+//                    Log.d("Github Data", "ID: " + item.id + "  Name: " + item.name + " Full Name: " + item.full_name);
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Repo>> call, Throwable t) {
+//                t.printStackTrace();
+//            }
+//        });
+//    }
+
+
+        //http://localhost:8081/code/11-14_project/api/api_read_get.php?cID=1
+
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
+                .baseUrl("http://localhost:8081/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         GitHubService service = retrofit.create(GitHubService.class);
 
-//        Call<List<Repo>> repos = service.listRepos("octocat");
-        Call<List<Repo>> repos = service.listRepos("chiangyiyang");
+        Call<List<Repo>> repos = service.listRepos("octocat");
+//        Call<List<Repo>> repos = service.listRepos("chiangyiyang");
 
         //非同步呼叫
         repos.enqueue(new Callback<List<Repo>>() {
             @Override
             public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
                 List<Repo> result = response.body();
-                for (Repo item:
-                     result) {
+                for (Repo item :
+                        result) {
                     Log.d("Github Data", "ID: " + item.id + "  Name: " + item.name + " Full Name: " + item.full_name);
                 }
 
@@ -60,6 +93,19 @@ interface GitHubService {
 }
 
 class Repo {
+    int id;
+    String name;
+    String full_name;
+}
+
+
+
+interface MyServerService {
+    @GET("users/{user}/repos")
+    Call<List<Student>> getStudentData(@Path("user") String user);
+}
+
+class Student {
     int id;
     String name;
     String full_name;
