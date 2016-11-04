@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import java.util.Iterator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -12,7 +13,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public class MainActivity extends AppCompatActivity {
@@ -61,18 +61,24 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         ClassDBService service = retrofit.create(ClassDBService.class);
-        Call<List<Student>> repos = service.getStudentData("1");
+        final Call<List<Student>> repos = service.getStudentData("1");
 
         //非同步呼叫
         repos.enqueue(new Callback<List<Student>>() {
             @Override
             public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
                 List<Student> result = response.body();
-                for (Student item :
-                        result) {
-                    Log.d("ClassDB Data", "ID: " + item.cID + "  Name: "
-                            + item.cName + " Email: " + item.cEmail);
+                Iterator it = result.iterator();
+
+                while (it.hasNext()) {
+                    Student student = (Student) it.next();
+                    System.out.println(
+                            "ID: " + student.cID
+                                + "  Name: " + student.cName
+                                + " Email: " + student.cEmail
+                    );
                 }
+
             }
 
             @Override
