@@ -38,12 +38,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
                 List<Repo> result = response.body();
-                for (item:
+                for (Repo item:
                      result) {
-                    Log.d("Github Data", item.name);
+                    Log.d("Github Data", "ID: " + item.id + "  Name: " + item.name + " Full Name: " + item.full_name);
                 }
 
-                Log.d("Yiyang", "DDD");
             }
 
             @Override
@@ -63,4 +62,5 @@ interface GitHubService {
 class Repo {
     int id;
     String name;
+    String full_name;
 }
