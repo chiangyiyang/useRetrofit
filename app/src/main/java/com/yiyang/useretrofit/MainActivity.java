@@ -2,8 +2,11 @@ package com.yiyang.useretrofit;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.Iterator;
 import java.util.List;
@@ -15,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ListView lstData;
+    private ListView item_list;
     private ArrayAdapter<String> dataAdapter;
 
     @Override
@@ -24,38 +27,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        lstData = (ListView) findViewById(R.id.lstData);
-        lstData.setAdapter(dataAdapter);
+        item_list = (ListView) findViewById(R.id.lstData);
+        item_list.setAdapter(dataAdapter);
 
-//
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("https://api.github.com/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        GitHubService service = retrofit.create(GitHubService.class);
-//
-//        Call<List<Repo>> repos = service.listRepos("octocat");
-////        Call<List<Repo>> repos = service.listRepos("chiangyiyang");
-//
-//        //非同步呼叫
-//        repos.enqueue(new Callback<List<Repo>>() {
-//            @Override
-//            public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
-//                List<Repo> result = response.body();
-//                for (Repo item:
-//                     result) {
-//                    Log.d("Github Data", "ID: " + item.id + "  Name: " + item.name + " Full Name: " + item.full_name);
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<Repo>> call, Throwable t) {
-//                t.printStackTrace();
-//            }
-//        });
-//    }
+        AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(MainActivity.this, "Hello Toast", Toast.LENGTH_LONG).show();
+            }
+        };
+
+        item_list.setOnItemClickListener(onItemClickListener);
 
 
         //測試PHP網頁
@@ -78,11 +60,6 @@ public class MainActivity extends AppCompatActivity {
 
                 while (it.hasNext()) {
                     Student student = (Student) it.next();
-//                    System.out.println(
-//                            "ID: " + student.cID
-//                                    + "  Name: " + student.cName
-//                                    + " Email: " + student.cEmail
-//                    );
                     dataAdapter.add(student.cName);
                 }
 
@@ -95,34 +72,3 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
-
-
-//
-//interface GitHubService {
-//    @GET("users/{user}/repos")
-//    Call<List<Repo>> listRepos(@Path("user") String user);
-//}
-//
-//class Repo {
-//    int id;
-//    String name;
-//    String full_name;
-//}
-
-
-//http://localhost:8081/code/11-14_project/api/api_read_get.php?cID=1
-//interface ClassDBService {
-//    @GET("code/11-14_project/api/api_read_get.php")
-//    Call<List<Student>> getStudentData(@Query("cID") String cID);
-//}
-
-//interface ClassDBService {
-//    @GET("code/11-14_project/api/api_read_all_get.php")
-//    Call<List<Student>> getAllStudentData();
-//}
-
-//class Student {
-//    int cID;
-//    String cName;
-//    String cEmail;
-//}
