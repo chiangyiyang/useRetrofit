@@ -27,16 +27,15 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == REQUEST_DEL && resultCode == RESULT_OK) {
             String id = data.getStringExtra("id");
-            api_service.delStudentData(id).enqueue(new Callback() {
+            api_service.delStudentData(id).enqueue(new Callback<String>() {
                 @Override
-                public void onResponse(Call call, Response response) {
-                    Toast.makeText(MainActivity.this, "Deleted", Toast.LENGTH_LONG).show();
+                public void onResponse(Call<String> call, Response<String> response) {
                     updateList();
+
                 }
 
                 @Override
-                public void onFailure(Call call, Throwable t) {
-                    t.printStackTrace();
+                public void onFailure(Call<String> call, Throwable t) {
 
                 }
             });
@@ -94,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
 
         updateList();
     }
-
     private void updateList() {
         final Call<List<Student>> repos = api_service.getAllStudentData();
 

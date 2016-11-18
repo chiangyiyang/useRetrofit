@@ -11,5 +11,5 @@ public interface ClassDBService {
     Call<List<Student>> getAllStudentData();
 
     @GET("code/11-14_project/api/api_del_get.php")
-    Call delStudentData(@Query("cID") String cID);
+    Call<String> delStudentData(@Query("cID") String cID);
 }
