@@ -1,20 +1,14 @@
 package com.yiyang.useretrofit;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-
+import android.support.v7.app.AppCompatActivity;
 import java.util.Iterator;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
         //測試PHP網頁
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.58.18:8081/")      //for emulator
-//                .baseUrl("http://192.168.43.233:8081/")   //for real device
+//                .baseUrl("http://192.168.58.18:8081/")      //for emulator
+                .baseUrl("http://192.168.43.233:8081/")   //for real device
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -112,13 +106,13 @@ public class MainActivity extends AppCompatActivity {
 //    Call<List<Student>> getStudentData(@Query("cID") String cID);
 //}
 
-interface ClassDBService {
-    @GET("code/11-14_project/api/api_read_all_get.php")
-    Call<List<Student>> getAllStudentData();
-}
+//interface ClassDBService {
+//    @GET("code/11-14_project/api/api_read_all_get.php")
+//    Call<List<Student>> getAllStudentData();
+//}
 
-class Student {
-    int cID;
-    String cName;
-    String cEmail;
-}
+//class Student {
+//    int cID;
+//    String cName;
+//    String cEmail;
+//}
