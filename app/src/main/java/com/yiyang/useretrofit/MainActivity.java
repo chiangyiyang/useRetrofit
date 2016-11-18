@@ -2,6 +2,9 @@ package com.yiyang.useretrofit;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
 import java.util.Iterator;
 import java.util.List;
 import retrofit2.Call;
@@ -12,11 +15,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ListView lstData;
+    private ArrayAdapter<String> dataAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        lstData = (ListView) findViewById(R.id.lstData);
+        lstData.setAdapter(dataAdapter);
 
 //
 //        Retrofit retrofit = new Retrofit.Builder()
@@ -69,11 +78,12 @@ public class MainActivity extends AppCompatActivity {
 
                 while (it.hasNext()) {
                     Student student = (Student) it.next();
-                    System.out.println(
-                            "ID: " + student.cID
-                                    + "  Name: " + student.cName
-                                    + " Email: " + student.cEmail
-                    );
+//                    System.out.println(
+//                            "ID: " + student.cID
+//                                    + "  Name: " + student.cName
+//                                    + " Email: " + student.cEmail
+//                    );
+                    dataAdapter.add(student.cName);
                 }
 
             }
