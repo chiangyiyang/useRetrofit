@@ -100,8 +100,12 @@ public class MainActivity extends AppCompatActivity {
         repos.enqueue(new Callback<List<Student>>() {
             @Override
             public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
-                List<Student> result = response.body();
-                Iterator it = result.iterator();
+//                List<Student> result = response.body();
+//                Iterator it = result.iterator();
+
+                MyApp app = (MyApp) getApplicationContext();
+                app.students  = response.body();
+                Iterator it = app.students.iterator();
 
                 dataAdapter.clear();
                 students.clear();
