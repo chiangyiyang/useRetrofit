@@ -11,200 +11,212 @@
     tools:context="com.yiyang.useretrofit.DeleteActivity"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <TextView
-            android:text="座號"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:layout_weight="1"
-            android:textSize="20sp"
-            android:layout_width="0dp" />
+            android:orientation="vertical" >
 
-        <TextView
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/txtID"
-            android:layout_weight="3"
-            android:layout_width="0dp"
-            android:text="  " />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-    </LinearLayout>
+                <TextView
+                    android:text="座號"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:layout_width="0dp" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/txtID"
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:text="  " />
 
-        <TextView
-            android:text="姓名	"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:layout_weight="1"
-            android:textSize="20sp"
-            android:layout_width="0dp" />
+            </LinearLayout>
 
-        <TextView
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/txtName"
-            android:layout_weight="3"
-            android:layout_width="0dp"
-            android:text="  " />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-    </LinearLayout>
+                <TextView
+                    android:text="姓名	"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:layout_width="0dp" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/txtName"
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:text="  " />
 
-        <TextView
-            android:text="性別"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:layout_weight="1"
-            android:textSize="20sp"
-            android:layout_width="0dp" />
+            </LinearLayout>
 
-        <TextView
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/txtGender"
-            android:layout_weight="3"
-            android:layout_width="0dp"
-            android:text="  " />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-    </LinearLayout>
+                <TextView
+                    android:text="性別"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:layout_width="0dp" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/txtGender"
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:text="  " />
 
-        <TextView
-            android:text="生日"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:layout_weight="1"
-            android:textSize="20sp"
-            android:layout_width="0dp" />
+            </LinearLayout>
 
-        <TextView
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/txtBirthday"
-            android:layout_weight="3"
-            android:layout_width="0dp"
-            android:text="  " />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-    </LinearLayout>
+                <TextView
+                    android:text="生日"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:layout_width="0dp" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/txtBirthday"
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:text="  " />
 
-        <TextView
-            android:text="電子郵件"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:layout_weight="1"
-            android:textSize="20sp"
-            android:layout_width="0dp" />
+            </LinearLayout>
 
-        <TextView
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/txtEmail"
-            android:layout_weight="3"
-            android:layout_width="0dp"
-            android:text="  " />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-    </LinearLayout>
+                <TextView
+                    android:text="電子郵件"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:layout_width="0dp" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/txtEmail"
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:text="  " />
 
-        <TextView
-            android:text="電話"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:layout_weight="1"
-            android:textSize="20sp"
-            android:layout_width="0dp" />
+            </LinearLayout>
 
-        <TextView
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/txtTel"
-            android:layout_weight="3"
-            android:layout_width="0dp"
-            android:text="  " />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-    </LinearLayout>
+                <TextView
+                    android:text="電話"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:layout_width="0dp" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/txtTel"
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:text="  " />
 
-        <TextView
-            android:text="住址"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:layout_weight="1"
-            android:textSize="20sp"
-            android:layout_width="0dp" />
+            </LinearLayout>
 
-        <TextView
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/txtAddr"
-            android:layout_weight="3"
-            android:layout_width="0dp"
-            android:text="  " />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-    </LinearLayout>
+                <TextView
+                    android:text="住址"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:layout_width="0dp" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/txtAddr"
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:text="  " />
 
-        <Button
-            android:text="刪除"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnDel"
-            android:layout_weight="1" />
+            </LinearLayout>
 
-        <Button
-            android:text="取消"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnCancel"
-            android:layout_weight="1" />
-    </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:text="刪除"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnDel"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:text="取消"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnCancel"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
