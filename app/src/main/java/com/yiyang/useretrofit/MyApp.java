@@ -4,6 +4,10 @@ import android.app.Application;
 
 import java.util.List;
 
+import retrofit2.Call;
+
 public class MyApp extends Application {
-    List<Student> students;
+    ClassDBService api_service;
+    List<Student> allStudentData;
+
 }
