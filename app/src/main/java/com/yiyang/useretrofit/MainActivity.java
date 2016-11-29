@@ -2,8 +2,13 @@ package com.yiyang.useretrofit;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.menu.MenuView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +16,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -39,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     //    private ArrayAdapter<String> dataAdapter;
     private List<Student> studentData;
+    private String baseUrl;
 
 
     @Override
@@ -191,9 +199,10 @@ public class MainActivity extends AppCompatActivity {
 //        student_list.setOnItemLongClickListener(onItemLongClickListener);
 
 
+        baseUrl = "http://192.168.43.233:8081/";
         Retrofit retrofit = new Retrofit.Builder()
 //                .baseUrl("http://192.168.58.18:8081/")      //for emulator
-                .baseUrl("http://192.168.43.233:8081/")   //for real device
+                .baseUrl(baseUrl)   //for real device
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -260,6 +269,31 @@ public class MainActivity extends AppCompatActivity {
             return i;
         }
 
+        private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+            ImageView bmImage;
+
+            public DownloadImageTask(ImageView bmImage) {
+                this.bmImage = bmImage;
+            }
+
+            protected Bitmap doInBackground(String... urls) {
+                String urldisplay = urls[0];
+                Bitmap mIcon11 = null;
+                try {
+                    InputStream in = new java.net.URL(urldisplay).openStream();
+                    mIcon11 = BitmapFactory.decodeStream(in);
+                } catch (Exception e) {
+                    Log.e("Error", e.getMessage());
+                    e.printStackTrace();
+                }
+                return mIcon11;
+            }
+
+            protected void onPostExecute(Bitmap result) {
+                bmImage.setImageBitmap(result);
+            }
+        }
+
         @Override
         public View getView(final int i, View view, ViewGroup viewGroup) {
 
@@ -267,6 +301,14 @@ public class MainActivity extends AppCompatActivity {
 
             final TextView txtInfo = (TextView) curView.findViewById(R.id.txtInfo);
             txtInfo.setText(studentData.get(i).cName);
+
+//            ImageView imgLogo = (ImageView) findViewById(R.id.imgLogo);
+//            Bitmap bmpLogo;
+//            imgLogo.setImageBitmap(bmpLogo);
+            // show The Image in a ImageView
+            new DownloadImageTask((ImageView) curView.findViewById(R.id.imgLogo))
+                    .execute(baseUrl + "code/11-14_project/image_io_test/sendImg.php?cID=" + studentData.get(i).cID);
+
 
             Button btnDel = (Button) curView.findViewById(R.id.btnDel);
             btnDel.setOnClickListener(new View.OnClickListener() {
