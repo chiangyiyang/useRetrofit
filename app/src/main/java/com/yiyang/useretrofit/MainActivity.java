@@ -4,28 +4,29 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.menu.MenuView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -113,6 +114,45 @@ public class MainActivity extends AppCompatActivity {
         updateList();
     }
 
+
+    private void uploadFile(Uri fileUri) {
+        // create uploadFile service client
+        ClassDBService service = ((MyApp) getApplicationContext()).api_service;
+
+        // https://github.com/iPaulPro/aFileChooser/blob/master/aFileChooser/src/com/ipaulpro/afilechooser/utils/FileUtils.java
+        // use the FileUtils to get the actual file by uri
+        File file = FileUtils.getFile(this, fileUri);
+
+        // create RequestBody instance from file
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+
+        // MultipartBody.Part is used to send also the actual file name
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("picture", file.getName(), requestFile);
+
+        // add another part within the multipart request
+        String descriptionString = "hello, this is description speaking";
+        RequestBody description =
+                RequestBody.create(
+                        MediaType.parse("multipart/form-data"), descriptionString);
+
+        // finally, execute the request
+        Call<ResponseBody> call = service.uploadFile(description, body);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call,
+                                   Response<ResponseBody> response) {
+                Log.v("Upload", "success");
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("Upload error:", t.getMessage());
+            }
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,6 +167,14 @@ public class MainActivity extends AppCompatActivity {
         myAdapter = new MyAdapter(this);
         student_list.setAdapter(myAdapter);
 
+        //Upload file test
+        Button btnUploadFile = (Button) findViewById(R.id.btnUploadFile);
+        btnUploadFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                uploadFile( Uri.parse ("file:///storage/emulated/0/Download/01.jpg"));
+            }
+        });
 
         //Update button
         Button btnUpdate = (Button) findViewById(R.id.btnUpdate);
@@ -156,47 +204,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_ADD);
             }
         });
-
-//        AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-////                Toast.makeText(MainActivity.this, dataAdapter.getItem(i), Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent();
-//                intent.setClass(MainActivity.this, ModifyActivity.class);
-//
-//                intent.putExtra("id", String.valueOf(studentData.get(i).cID));
-//                intent.putExtra("name", studentData.get(i).cName);
-//                intent.putExtra("gender", studentData.get(i).cSex);
-//                intent.putExtra("birthday", studentData.get(i).cBirthday);
-//                intent.putExtra("email", studentData.get(i).cEmail);
-//                intent.putExtra("tel", studentData.get(i).cPhone);
-//                intent.putExtra("addr", studentData.get(i).cAddr);
-//
-//                startActivityForResult(intent, REQUEST_MODIFY);
-//            }
-//        };
-//
-//        AdapterView.OnItemLongClickListener onItemLongClickListener = new AdapterView.OnItemLongClickListener() {
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Intent intent = new Intent();
-//                intent.setClass(MainActivity.this, DeleteActivity.class);
-//
-//                intent.putExtra("id", studentData.get(i).cID);
-//                intent.putExtra("name", studentData.get(i).cName);
-//                intent.putExtra("gender", studentData.get(i).cSex);
-//                intent.putExtra("birthday", studentData.get(i).cBirthday);
-//                intent.putExtra("email", studentData.get(i).cEmail);
-//                intent.putExtra("tel", studentData.get(i).cPhone);
-//                intent.putExtra("addr", studentData.get(i).cAddr);
-//
-//                startActivityForResult(intent, REQUEST_DEL);
-//                return false;
-//            }
-//        };
-//
-//        student_list.setOnItemClickListener(onItemClickListener);
-//        student_list.setOnItemLongClickListener(onItemLongClickListener);
 
 
         baseUrl = "http://192.168.43.233:8081/";

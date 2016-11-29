@@ -35,4 +35,15 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
+    <Button
+        android:text="UploadFile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnUploadFile"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/btnAdd"
+        android:layout_toEndOf="@+id/btnAdd"
+        android:layout_marginLeft="31dp"
+        android:layout_marginStart="31dp" />
+
 </RelativeLayout>
