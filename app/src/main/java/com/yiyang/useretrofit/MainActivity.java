@@ -167,6 +167,19 @@ public class MainActivity extends AppCompatActivity {
         myAdapter = new MyAdapter(this);
         student_list.setAdapter(myAdapter);
 
+        //Orientation Sensor
+        Button btnOrientationSensor = (Button) findViewById(R.id.btnOrientationSensor);
+        btnOrientationSensor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, OrientationSensorActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
         //Chart
         Button btnChart = (Button) findViewById(R.id.btnChart);
         btnChart.setOnClickListener(new View.OnClickListener() {

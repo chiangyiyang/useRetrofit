@@ -22,6 +22,15 @@
             android:layout_weight="1" />
 
         <Button
+            android:text="感測器"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnOrientationSensor"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/btnUploadFile"
+            android:layout_weight="1" />
+
+        <Button
             android:text="UploadFile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
