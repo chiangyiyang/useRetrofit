@@ -167,6 +167,18 @@ public class MainActivity extends AppCompatActivity {
         myAdapter = new MyAdapter(this);
         student_list.setAdapter(myAdapter);
 
+        //Chart
+        Button btnChart = (Button) findViewById(R.id.btnChart);
+        btnChart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, SimpleXYPlotActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //Upload file test
         Button btnUploadFile = (Button) findViewById(R.id.btnUploadFile);
         btnUploadFile.setOnClickListener(new View.OnClickListener() {
